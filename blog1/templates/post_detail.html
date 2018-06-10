@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block head_title %} {{instance.title}} | {{block.super}}{% endblock head_title%}
+{% block content %}
+<div class="col-sm-6 col-sm-offsets-3">
+<h1>{{ title }}<small>{{instance.timestamps}}<br></small></h1>
+
+
+{{instance.content|linebreaks}}<br>
+
+    <p>Autor: {{instance.user}}</p>
+    <p><a href="/posts/{{instance.id}}/edit" class="btn btn-primary" role="button">Edytuj</a></p>
+    <p><a href='/posts/{{instance.id}}/add-comment' class="btn btn-primary" role="button">Dodaj komentarz</a></p>
+            {% for comment in instance.comment_set.all %}
+               <div class="comment">
+                  {{comment.comment_text}}
+               </div>
+               <div class="date">
+               Posted by {{comment.user}}
+               {{comment.comment_date}}
+               </div>
+
+            {% endfor %}
+</div>
+{% endblock content %}

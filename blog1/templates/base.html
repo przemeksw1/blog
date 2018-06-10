@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block head_title %} BLOG{% endblock head_title%}</title>
+<head>
+
+    <meta charset="UTF-8">
+    <title>{% block title %}Blog{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'static/style.css' %}"/>
+</head>
+<body >
+
+<ul class="nav nav-pills navbar-inverse" >
+  <li role="presentation" onclick="active"><a href="/posts/">Home</a></li>
+  <li role="presentation" onclick="active"><a href="#">Contact</a></li>
+  <li role="presentation" onclick="active"><a href="#">Messages</a></li>
+
+    <li role="presentation" onclick="active"><a href="/posts/login/">Login</a></li>
+    <li role="presentation" onclick="active"><a href="/posts/register/">Sign in</a></li>
+    <li role="presentation" onclick="active"><a href="/posts/logout/">Logout</a></li>
+</ul>
+
+{% if messages %}
+<div class="messages">
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{% if "html_safe" in message.tags %}{{ message|safe }}
+    {% else %}{{message}}{%endif%}</li>
+    {% endfor %}
+</ul>
+</div>
+<img src="images/bg.jpg">
+{% endif %}
+<div class="container" >
+
+    {% block content %}
+<h1>{{ title }} to je template</h1>
+{% for obj in object_list %}
+<a href='{{ obj.get_absolute_url}}'>{{obj.title}}</a><br>
+{{obj.content}}<br>
+{{obj.updated}}<br>
+{{obj.timestamps}}<br>
+{{obj.id}}<br>
+{% endfor %}
+
+    {% endblock content %}
+</div>
+
+</body>
+</ht- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
